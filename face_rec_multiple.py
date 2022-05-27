@@ -4,14 +4,22 @@ from os import listdir
 import numpy as np
 
 
+def progress_bar(progress, total):
+    percent = 100 * (progress / float(total))
+    bar = "█" * int(percent) + "-" * (100 - int(percent))
+    print(f"\r|{bar}| {percent:.2f}%", end="\r")
+
+
 PATH = "/home/mike/scripts/opencv/face_recognition/faces"
 cap = cv2.VideoCapture(0)
 target_images = []
 target_encodings = []
 image_files = listdir(PATH)
+print("\nCaricamento file\n")
 for i in range(len(image_files)):
     target_images.append(face_recognition.load_image_file(f"{PATH}/{image_files[i]}"))
     target_encodings.append(face_recognition.face_encodings(target_images[i]))
+    progress_bar(i + 1, len(image_files))
 
 target_names = [image_file.split(".")[0] for image_file in image_files]
 
