@@ -35,7 +35,7 @@ if len(target_images) < len(image_files):
 
     target_images = []
     target_encodings = []
-    print("\nCaricamento Immagini\n")
+    print("\nUpdate Immagini\n")
     for i in range(len(image_files)):
         target_images.append(
             face_recognition.load_image_file(f"{PATH}/{image_files[i]}")
